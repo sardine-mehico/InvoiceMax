@@ -19,6 +19,7 @@ class InvoiceResource extends JsonResource
             'invoice_date' => $this->invoice_date,
             'due_date' => $this->due_date,
             'invoice_number' => $this->invoice_number,
+            'po_number' => $this->po_number,
             'reference_number' => $this->reference_number,
             'status' => $this->status,
             'paid_status' => $this->paid_status,

@@ -178,9 +178,9 @@ trait GeneratesPdfTrait
 
         $str = preg_replace("/<[^\/>]*>([\s]?)*<\/[^>]*>/", '', $str);
 
-        $str = str_replace('<p>', '', $str);
+        $str = preg_replace('/<p\b[^>]*>/i', '', $str);
 
-        $str = str_replace('</p>', '</br>', $str);
+        $str = preg_replace('/<\/p>/i', '<br>', $str);
 
         return $str;
     }

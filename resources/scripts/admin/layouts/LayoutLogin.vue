@@ -22,7 +22,8 @@
       <div class="w-full">
         <MainLogo
           v-if="!loginPageLogo"
-          class="block w-48 h-auto max-w-full mb-32 text-primary-500"
+          class="block w-48 h-auto max-w-full mb-32"
+          light-color="#4169E1"
         />
 
         <img
@@ -78,37 +79,7 @@
 
       <LoginBackgroundOverlay class="absolute h-full w-full right-[7.5%]" />
 
-      <div class="md:pl-10 xl:pl-0 relative z-50 w-7/12 xl:w-5/12 xl:w-5/12">
-        <h1
-          class="
-            hidden
-            mb-3
-            text-3xl
-            leading-normal
-            text-left text-white
-            xl:text-5xl xl:leading-tight
-            md:none
-            lg:block
-          "
-        >
-          {{ pageHeading }}
-        </h1>
-        <p
-          class="
-            hidden
-            text-sm
-            not-italic
-            font-normal
-            leading-normal
-            text-left text-gray-100
-            xl:text-base xl:leading-6
-            md:none
-            lg:block
-          "
-        >
-          {{ pageDescription }}
-        </p>
-      </div>
+      <div class="md:pl-10 xl:pl-0 relative z-50 w-7/12 xl:w-5/12 xl:w-5/12"></div>
 
       <LoginBottomVector
         class="
@@ -156,7 +127,7 @@ const copyrightText = computed(() => {
   if (window.copyright_text) {
     return window.copyright_text
   }
-  return 'Copyright @ IDEOLOGIX MEDIA DOOEL.'
+  return 'Copyright @ InvoiceMax'
 })
 
 const loginPageLogo = computed(() => {

@@ -1,0 +1,74 @@
+services:
+  php-fpm:
+    container_name: invoiceshelf-php
+    build:
+      context: ./
+      dockerfile: docker/development/Dockerfile
+      args:
+        - UID=${USRID:-1000}
+        - GID=${GRPID:-1000}
+      target: development
+    volumes:
+      # Full app source (development convenience)
+      - ./:/var/www/html
+
+      # ── Custom PDF invoice/estimate templates ──────────────────────────────
+      # Drop .blade.php files into ./volumes/pdf-templates/invoice/ or
+      # ./volumes/pdf-templates/estimate/ and they'll appear as selectable
+      # templates inside InvoiceShelf.
+      - ./volumes/pdf-templates:/var/www/html/storage/app/templates/pdf
+
+      # ── Custom email templates ─────────────────────────────────────────────
+      # Override the built-in Blade email views by placing matching files here.
+      # Structure mirrors resources/views/emails/:
+      #   send/invoice.blade.php, send/estimate.blade.php, send/payment.blade.php
+      #   viewed/invoice.blade.php, etc.
+      - ./volumes/email-templates:/var/www/html/resources/views/emails
+    networks:
+      - invoiceshelf
+
+  nginx:
+    container_name: invoiceshelf-nginx
+    build:
+      context: ./
+      dockerfile: docker/development/nginx.Dockerfile
+    environment:
+      - "PHP_FPM_HOST=php-fpm:9000"
+    ports:
+      - '${APP_PORT:-80}:80'
+    volumes:
+      - ./:/var/www/html
+      - ./volumes/pdf-templates:/var/www/html/storage/app/templates/pdf
+    depends_on:
+      - php-fpm
+    networks:
+      invoiceshelf:
+        aliases:
+          - invoiceshelf.test
+
+  adminer:
+    container_name: invoiceshelf-adminer
+    build:
+      context: ./
+      dockerfile: docker/development/adminer/Dockerfile
+    environment:
+      ADMINER_PLUGINS: tables-filter
+      ADMINER_DESIGN: konya
+    volumes:
+      - ./database:/database
+    ports:
+      - '${ADMINER_PORT:-8080}:8080'
+    networks:
+      - invoiceshelf
+
+  mail:
+    container_name: invoiceshelf-mailpit
+    image: axllent/mailpit:latest
+    ports:
+      - '${MAIL_PORT:-1025}:1025'
+      - '${MAILPIT_PORT:-8025}:8025'
+    networks:
+      - invoiceshelf
+
+networks:
+  invoiceshelf:

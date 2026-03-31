@@ -50,6 +50,17 @@
         />
       </BaseInputGroup>
 
+      <BaseInputGroup
+        :label="$t('invoices.po_number')"
+        :content-loading="isLoading"
+      >
+        <BaseInput
+          v-model="invoiceStore.newInvoice.po_number"
+          :content-loading="isLoading"
+          :placeholder="$t('invoices.po_number_placeholder')"
+        />
+      </BaseInputGroup>
+
       <ExchangeRateConverter
         :store="invoiceStore"
         store-prop="newInvoice"

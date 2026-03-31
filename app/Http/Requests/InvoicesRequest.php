@@ -37,6 +37,11 @@ class InvoicesRequest extends FormRequest
                 'required',
                 Rule::unique('invoices')->where('company_id', $this->header('company')),
             ],
+            'po_number' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
             'exchange_rate' => [
                 'nullable',
             ],

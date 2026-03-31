@@ -1,34 +1,49 @@
-    @component('mail::layout')
-    {{-- Header --}}
-    @slot('header')
-        @component('mail::header', ['url' => ''])
-        @if($data['company']['logo'])
-            <img class="header-logo" src="{{asset($data['company']['logo'])}}" alt="{{$data['company']['name']}}">
-        @else
-            {{$data['company']['name']}}
-        @endif
-        @endcomponent
-    @endslot
+<style>
+    .subcopy,
+    .subcopy p,
+    .subcopy td,
+    .action,
+    .action tr,
+    .action td,
+    .footer,
+    .footer td {
+        text-align: left !important;
+    }
+</style>
 
-    {{-- Body --}}
-    <!-- Body here -->
+@component('mail::layout')
+{{-- Header --}}
+@slot('header')
+@component('mail::header', ['url' => ''])
+<div style="text-align: center; width: 100%;">
+    {{$data['company']['name']}}
+</div>
+@endcomponent
+@endslot
 
-    {{-- Subcopy --}}
-    @slot('subcopy')
-        @component('mail::subcopy')
-            {!! $data['body'] !!}
-            @if(!$data['attach']['data'])
-                @component('mail::button', ['url' => $data['url']])
-                    @lang('mail_view_invoice')
-                @endcomponent
-            @endif
-        @endcomponent
-    @endslot
+{{-- Body --}}
+<!-- Body here -->
 
-    {{-- Footer --}}
-    @slot('footer')
-        @component('mail::footer')
-            Powered by <a class="footer-link" href="https://invoiceshelf.com" target="_blank">InvoiceShelf</a>
-        @endcomponent
-    @endslot
+{{-- Subcopy --}}
+@slot('subcopy')
+@component('mail::subcopy')
+<div style="text-align: left;">
+    {!! $data['body'] !!}
+    @if(!$data['attach']['data'])
+        <div style="text-align: left;">
+            @component('mail::button', ['url' => $data['url']])
+            @lang('mail_view_invoice')
+            @endcomponent
+        </div>
+    @endif
+</div>
+@endcomponent
+@endslot
+
+{{-- Footer --}}
+@slot('footer')
+@component('mail::footer')
+<div style="text-align: left; width: 100%;"></div>
+@endcomponent
+@endslot
 @endcomponent

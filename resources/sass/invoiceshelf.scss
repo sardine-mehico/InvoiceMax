@@ -1,53 +1,16 @@
 @use "themes.scss";
 @use "components/animation.scss";
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap");
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
 
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("$fonts/Poppins-Black.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("$fonts/Poppins-Light.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url("$fonts/Poppins-Medium.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("$fonts/Poppins-Regular.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("$fonts/Poppins-SemiBold.ttf") format("truetype");
-}
-
 body {
+    font-family: "Inter", sans-serif;
     min-height: 100vh;
     min-height: -webkit-fill-available;
 }

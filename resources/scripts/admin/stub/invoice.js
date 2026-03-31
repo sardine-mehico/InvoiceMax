@@ -6,6 +6,7 @@ export default function () {
   return {
     id: null,
     invoice_number: '',
+    po_number: null,
     customer: null,
     customer_id: null,
     template_name: null,

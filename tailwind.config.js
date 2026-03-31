@@ -64,7 +64,7 @@ export default {
     },
 
     fontFamily: {
-      base: ['Poppins', 'sans-serif'],
+      base: ['Inter', 'sans-serif'],
     },
   },
   content: [

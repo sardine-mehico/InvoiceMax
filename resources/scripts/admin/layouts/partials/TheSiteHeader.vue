@@ -13,8 +13,8 @@
       py-3
       md:h-16 md:px-8
       bg-gradient-to-r
-      from-primary-500
-      to-primary-400
+      from-primary-800
+      to-primary-700
     "
   >
     <router-link

@@ -412,6 +412,8 @@
     "sub_total": "Sub Total",
     "invoice": "Invoice | Invoices",
     "invoice_number": "Invoice Number",
+    "po_number": "PO Number",
+    "po_number_placeholder": "Purchase Order no",
     "ref_number": "Ref Number",
     "contact": "Contact",
     "add_item": "Add an Item",
