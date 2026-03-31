@@ -1,13 +1,7 @@
 services:
   php-fpm:
     container_name: invoiceshelf-php
-    build:
-      context: ./
-      dockerfile: docker/development/Dockerfile
-      args:
-        - UID=${USRID:-1000}
-        - GID=${GRPID:-1000}
-      target: development
+    image: ghcr.io/sardine-mehico/invoicemax:1.0
     volumes:
       # Full app source (development convenience)
       - ./:/var/www/html
@@ -29,9 +23,7 @@ services:
 
   nginx:
     container_name: invoiceshelf-nginx
-    build:
-      context: ./
-      dockerfile: docker/development/nginx.Dockerfile
+    image: ghcr.io/sardine-mehico/invoicemax:1.0
     environment:
       - "PHP_FPM_HOST=php-fpm:9000"
     ports:
@@ -48,9 +40,7 @@ services:
 
   adminer:
     container_name: invoiceshelf-adminer
-    build:
-      context: ./
-      dockerfile: docker/development/adminer/Dockerfile
+    image: adminer:latest
     environment:
       ADMINER_PLUGINS: tables-filter
       ADMINER_DESIGN: konya
